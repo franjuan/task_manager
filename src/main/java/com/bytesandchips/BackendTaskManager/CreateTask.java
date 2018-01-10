@@ -19,7 +19,7 @@ public class CreateTask extends CommonTask<TaskRequest, Task> {
 	}
 
 	public CreateTask() {
-		logger.info("Initializing Create Task instance");
+		logger.info("Initializing Create Task Lambda instance");
 	}
 
 	protected Task processRequest(DynamoDBMapper mapper, TaskRequest input) {
@@ -28,7 +28,7 @@ public class CreateTask extends CommonTask<TaskRequest, Task> {
 
 		try {
 			mapper.save(task);
-			logger.debug("Task created correctly");
+			logger.debug("Task created correctly: {}", task);
 			return task;
 		} catch (ConditionalCheckFailedException e) {
 			logger.error("Error creating task", e);
